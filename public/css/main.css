@@ -1,0 +1,19 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: table;
+    width: 100%;
+}
+footer {
+    display: table-row;
+    height: 100px; /* à titre d'exemple */
+    width: 100%;
+    background-color: #333; /* Personnalisez la couleur de fond si nécessaire */
+    color: #fff; /* Personnalisez la couleur du texte si nécessaire */
+    padding: 10px;
+    bottom: 0;
+}
