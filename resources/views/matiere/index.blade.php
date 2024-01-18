@@ -20,6 +20,7 @@
             <th scope="col">Heure de fin</th>
             <th scope="col">Enseignant</th>
             <th scope="col">Parcours</th>
+            <th scope="col">Annee d'etude</th>
           </tr>
         </thead>
         @foreach ($matieres as $matiere)
@@ -32,6 +33,12 @@
                 <td>{{ $matiere->heure_fin }}</td>
                 <td>{{ $matiere->enseignant->nom}}</td>
                 <td>{{ $matiere->parcours->nomparcoure}}</td>
+                <td>{{ $matiere->anneedetude}}
+                    @if ($matiere->anneedetude=="1")
+                        ere Annee
+                    @else
+                        eme Annee
+                    @endif </td>
                 <td class="d-flex">
                     <a  type="button" class="btn btn-warning mx-3" href="{{ route('matieres.edit',$matiere) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

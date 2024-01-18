@@ -98,7 +98,7 @@
                   @endif
                   <div class="mb-3">
                     <label for="parcoure" class="form-label">Veuillez sélectionner l'annee d'etude.</label>
-                    <select class="form-select" name="Annedetude" aria-label="Default select example">
+                    <select class="form-select" name="anneedetude" aria-label="Default select example">
                         <option value="0">Annee d'etude</option>
                         <option value="1">1 ere Annee</option>
                         <option value="2">2 eme Annee</option>

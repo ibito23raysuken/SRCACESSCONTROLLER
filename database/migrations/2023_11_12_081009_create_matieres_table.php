@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('heure_debut');
             $table->string('heure_fin');
             $table->unsignedBigInteger('enseignant_id');
+            $table->text('anneedetude');
             $table->foreign('enseignant_id')->references('id')->on('enseignants')->onDelete('cascade');
             $table->timestamps();
         });

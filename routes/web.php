@@ -20,7 +20,7 @@ use App\Http\Controllers\EnseignantController;
 */
 
 Route::get('/',[MainController::class,'home'])->name('home');
-Route::get('/schedule/{mention}',[MainController::class,'schedule'])->name('schedule')->middleware('Admin');
+Route::get('/schedule/{mention}/{annee}',[MainController::class,'schedule'])->name('schedule')->middleware('Admin');
 Route::get('/presence',[MainController::class,'presence'])->name('presence')->middleware('Admin');
 Route::resource('etudiants', EtudiantsController::class)->middleware('Admin');;
 Route::resource('enseignants', EnseignantController::class)->middleware('Admin');

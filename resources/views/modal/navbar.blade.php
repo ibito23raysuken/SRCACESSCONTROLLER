@@ -32,23 +32,32 @@
                   <li><a class="dropdown-item" href="{{ route("parcoure.index") }}">Liste des Parcoure</a></li>
                 </ul>
               </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Emploie de Temps
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="{{ route("matieres.index") }}">Parametre de l'emploie du temp</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                          </li>
-                        @foreach ($liste_parcoure as $mention)
-                            <li><a class="dropdown-item" href="{{ route("schedule",$mention->id) }} ">{{ $mention->nomparcoure }}</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                              </li>
-                        @endforeach
-                    </ul>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Emploie du temps
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item subcreation" href="{{ route("matieres.index") }}">Creer une matiere</a></li>
+                            @php
+                                $allanneetude = ["1 ere Annee","2 eme Annee","3 eme Annee","4 eme Annee","5 eme Annee"];
+                            @endphp
+                            @foreach ($liste_parcoure as $mention)
+                                <li  class="sub_menu dropdown-item dropdown-submenu dropend">
+                                    <a class="btn ">
+                                        {{$mention->nomparcoure}}
+                                    </a>
+                                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="visually-hidden">{{$mention->nomparcoure}}</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach ($allanneetude as $anneetude)
+                                            <a class="dropdown-item subsubmenu"  href="{{ route('schedule', ['mention' => $mention->id, 'annee' => $anneetude])}}">{{ $anneetude}}</a>
+                                         @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                      </div>
                   </li>
             @else
             @endif
@@ -85,4 +94,5 @@
         </ul>
       </div>
     </div>
+
   </nav>

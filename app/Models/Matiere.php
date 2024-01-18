@@ -17,6 +17,7 @@ class Matiere extends Model
         'heure_debut',
         'heure_fin',
         'enseignant_id',
+        'anneedetude'
     ];
     use HasFactory;
     public function enseignant() {

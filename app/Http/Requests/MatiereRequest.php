@@ -26,6 +26,7 @@ class MatiereRequest extends FormRequest
             'jour'=>'required',
             'heure_debut'=> 'required',
             'heure_fin'=> 'required',
+            'heure_fin'=> 'required',
             'enseignant'=>'required|not_in:0',
             'parcours_id'=>'required|not_in:0',
         ];

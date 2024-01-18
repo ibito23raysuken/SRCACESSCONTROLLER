@@ -13,6 +13,7 @@ class MatiereManager{
         $matiere->heure_debut=$request->input('heure_debut');
         $matiere->heure_fin=$request->input('heure_fin');
         $matiere->enseignant_id=$request->input('enseignant');
+        $matiere->anneedetude=$request->input('anneedetude');
         $matiere->save();
     }
 }
