@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Matiere;
 use App\Models\Parcoure;
 use App\Models\Presence;
@@ -27,8 +28,12 @@ class MainController extends Controller
             'annee'=>$annee]);
     }
     function presence($semaine, $mention, $annee) {
-
-        $presence=Presence::paginate('20');
+        $dateAVerifier = Carbon::parse('2024-01-18 10:51:44');
+        $semaineAVerifier = "2024-W02";
+        list($annee, $semaine) = explode('-W', $semaine);
+        $dateDebutSemaine = Carbon::now()->setISODate($annee, $semaine, 1)->startOfDay();
+        $dateFinSemaine = $dateDebutSemaine->copy()->endOfWeek();
+        $presence = Presence::whereBetween('jour', [$dateDebutSemaine, $dateFinSemaine])->get();
         return view('presence.index',[
             'presences'=>$presence]);
     }
