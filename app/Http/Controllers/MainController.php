@@ -26,7 +26,7 @@ class MainController extends Controller
             'parcoure'=>$parcoure,
             'annee'=>$annee]);
     }
-    function presence() {
+    function presence($semaine, $mention, $annee) {
 
         $presence=Presence::paginate('20');
         return view('presence.index',[
