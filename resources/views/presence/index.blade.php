@@ -11,6 +11,8 @@
             <th scope="col">#ID</th>
             <th scope="col">Nom de l'etudiant</th>
             <th scope="col">Parcours</th>
+            <th scope="col">Matiere</th>
+            <th scope="col">date</th>
           </tr>
         </thead>
         @foreach ($presences as $presence)

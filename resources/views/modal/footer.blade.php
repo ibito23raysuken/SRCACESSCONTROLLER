@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer>
+<footer class="flex-shrink-0 py-4 bg-dark text-white-50">
     <!-- Grid container -->
     <div class="container ">
         <hr class="my-3">

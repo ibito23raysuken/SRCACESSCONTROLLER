@@ -7,3 +7,9 @@
     left: 100%;
     margin-top: -1px;
 }
+main {
+    height: 100vh;
+}
+footer {
+    margin-top: 200px;
+}

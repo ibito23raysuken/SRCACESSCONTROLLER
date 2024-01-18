@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
-            $table->integer('ref_etudiant');
-            $table->string('nom_etudiant');
-            $table->string('ref_qrcode');
+            $table->unsignedBigInteger('etudiant_id');
+            $table->foreign('etudiant_id')->references('id')->on('etudiants')->onDelete('cascade');
+            $table->unsignedBigInteger('parcoure_id');
+            $table->foreign('parcoure_id')->references('id')->on('parcoures')->onDelete('cascade');
+            $table->unsignedBigInteger('matiere_id');
+            $table->foreign('matiere_id')->references('id')->on('matieres')->onDelete('cascade');
+            $table->dateTime('jour');
             $table->timestamps();
         });
     }

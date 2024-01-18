@@ -17,13 +17,13 @@
 
         </style>
     </head>
-    <body>
+    <body >
         <header>
             <!-- En-tête de la page (barre de navigation, titre, etc.) -->
             @include('modal.navbar')
         </header>
 
-        <main class="mb-5 pb-5">
+        <main class="mb-5 pb-5 ">
             @stack('style')
             @include('modal.flash')
             @yield('content')
@@ -53,5 +53,6 @@
                     }
                 });
             });
+
         </script>
 </html>

@@ -14,7 +14,7 @@
                 <h2 class="display-6 text-center">Emploi du temps Parcours {{ $parcoure->nomparcoure }} </h2>
                 <h2 class="display-6 text-center">En classe de  {{ $annee }} </h2>
                 <label for="week">Choisissez une semaine en mai ou juin :</label>
-                <input type="week" name="week" id="camp-week"/>
+                <input type="week" name="week" id="champ-week"/>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
@@ -31,7 +31,7 @@
                                         <td>
                                             @foreach ($matieres as $matiere)
                                                 @if ($matiere->heure_debut <= $heure && $matiere->heure_fin >= $heure && $matiere->jour == $jour)
-                                                    <a class="text-decoration-none" href="{{ route('presence') }}">{{$matiere->cours->nomcours}}</a>
+                                                    <a class="text-decoration-none generate-url"  href="">{{$matiere->cours->nomcours}}</a>
                                                 @endif
                                             @endforeach
                                         </td>
@@ -45,4 +45,25 @@
         </div>
     </div>
 </div>
+
+
 @endsection
+@push('scripts')
+    {{-- Script JavaScript --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#champ-week').on('change', function() {
+                var selectedWeek = $(this).val();
+                var parcoure = '{{ $parcoure->nomparcoure }}';
+                var anneedetude = '{{ $annee }}';
+                var url = '{{ route("presence", ["semaine" => ":semaine", "parcoure" => ":parcoure", "anneedetude" => ":anneedetude"]) }}';
+                url = url.replace(':semaine', selectedWeek);
+                url = url.replace(':parcoure', parcoure);
+                url = url.replace(':anneedetude', anneedetude);
+                console.log('URL générée : ' + url);
+                $('.generate-url').attr('href', url);
+            });
+        });
+    </script>
+@endpush
