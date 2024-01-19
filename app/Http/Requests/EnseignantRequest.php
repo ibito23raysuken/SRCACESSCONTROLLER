@@ -21,10 +21,17 @@ class EnseignantRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'nom'=>'required|min:3|max:200',
-            'prenom'=>'required|min:3|max:200',
-            'sexe'=> 'required|not_in:0',
+        $rules = [
+            'nom' => 'required|min:3|max:200',
+            'prenom' => 'required|min:3|max:200',
+            'sexe' => 'required|not_in:0',
         ];
+
+        // Ajoutez la règle de validation pour le mot de passe uniquement lors de la création
+        if ($this->isMethod('post')) {
+            $rules['password'] = 'required|string|min:8|confirmed';
+        }
+
+        return $rules;
     }
 }

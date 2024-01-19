@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->text('sexe');
+            $table->string('password');
             $table->string('slug')->nullable();
             $table->timestamps();
         });

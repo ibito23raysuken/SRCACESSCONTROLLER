@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Etudiant;
-use App\Models\Presence;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
-class EtudiantsApiController extends Controller
+class EtudiantApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
         return Etudiant::all();
     }
 
@@ -31,18 +29,7 @@ class EtudiantsApiController extends Controller
      */
     public function store(Request $request)
     {
-        $presence=new Presence();
-        $reponses=$request->getContent();
-        $jsonDatas = json_decode($reponses, true);
-        foreach($jsonDatas as $jsondata){
-            Presence::create([
-                'nom_etudiant'=> $jsondata['nom'],
-                'ref_etudiant'=> $jsondata['id'],
-                'ref_qrcode'=> $jsondata['ref_qrcode'],
-            ]);
-            Log::info($jsondata['nom']);
-        }
-
+        //
     }
 
     /**

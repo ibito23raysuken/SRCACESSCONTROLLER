@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Utilities\EnseignantManager;
 use App\Http\Requests\EnseignantRequest;
 
+
 class EnseignantController extends Controller
 {
     private $enseignantManager;

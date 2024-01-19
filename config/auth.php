@@ -40,6 +40,17 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'enseignants', // Utilisez le provider approprié
+            'hash' => false,
+        ],
+
+        'enseignant' => [
+            'driver' => 'sanctum', // Utilisez le driver Sanctum pour l'authentification
+            'provider' => 'enseignants',
+            'hash' => true,
+        ],
     ],
 
     /*
@@ -65,7 +76,10 @@ return [
             'model' => App\Models\User::class,
             'username' => 'name',
         ],
-
+        'agents' => [
+            'driver' => 'sanctum',
+            'model' => App\Models\Enseignant::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
