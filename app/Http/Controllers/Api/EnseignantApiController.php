@@ -28,12 +28,12 @@ class EnseignantApiController extends Controller
                 return response()->json(['message' => 'Invalid credentials'], 401);
             }
 
-            // Authentification réussie, générer un token Sanctum
+            $matieres = $enseignant->matiere;
             $token = $enseignant->createToken('authToken')->plainTextToken;
             return response()->json([
                 "status" => true,
                 'message' => 'Login successful',
-                'data'=>$enseignant,
+                'data' => $enseignant,
                 'token' => $token
             ]);
         } catch (\Throwable $th) {

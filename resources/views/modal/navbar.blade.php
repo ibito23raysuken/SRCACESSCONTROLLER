@@ -59,8 +59,14 @@
                         </ul>
                       </div>
                   </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('journals.index')}}" >
+                        Journal d'accès
+                    </a>
+                  </li>
             @else
             @endif
+
         </ul>
         <ul class="navbar-nav mr-auto">
             @if (!Auth::user())

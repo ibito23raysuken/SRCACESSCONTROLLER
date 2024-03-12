@@ -49,7 +49,7 @@ class MatiereController extends Controller
         $matiere=new Matiere();
         $validate=$request->validated();
         $this->matiereManager->build($matiere,$request);
-        return redirect()->route('matieres.index')->with('success',"le matiere a ete enregistrer");
+        return redirect()->route('matieres.index')->with('success',"La matière a été enregistrée.");
     }
 
     /**
@@ -83,7 +83,7 @@ class MatiereController extends Controller
     {
         $validate=$matiererequest->validated();
         $this->matiereManager->build($matiere,$matiererequest);
-        return redirect()->route('matieres.index')->with('success',"les informations sur la matiere a ete modifier");
+        return redirect()->route('matieres.index')->with('success',"Les informations sur la matière ont été modifiées");
     }
 
     /**
@@ -92,6 +92,6 @@ class MatiereController extends Controller
     public function destroy(Matiere $matiere)
     {
         $matiere->delete();
-        return redirect()->route('matieres.index')->with('success',"La matiere a ete effacer ");
+        return redirect()->route('matieres.index')->with('success',"La matière a été effacée");
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\CoursController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\EtudiantsController;
 use App\Http\Controllers\ParcouresController;
@@ -27,4 +28,5 @@ Route::resource('enseignants', EnseignantController::class)->middleware('Admin')
 Route::resource('matieres', MatiereController::class)->middleware('Admin');
 Route::resource('parcoure', ParcouresController::class)->middleware('Admin');
 Route::resource('cours', CoursController::class)->middleware('Admin');
+Route::resource('journals', JournalController::class)->middleware('Admin');
 Auth::routes();

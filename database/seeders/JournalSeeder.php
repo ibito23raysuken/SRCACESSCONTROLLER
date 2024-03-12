@@ -2,23 +2,23 @@
 
 namespace Database\Seeders;
 
-use App\Models\Presence;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
+use App\Models\Journal;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class PresenceSeeder extends Seeder
+class JournalSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Presence::create(
+        Journal::create(
             [
             'etudiant_id'=>"1",
             'parcoure_id'=>"1",
-            'matiere_id'=>"5",
+            'heure'=>Carbon::now(),
             'jour'=>Carbon::now(),
             ]
         );

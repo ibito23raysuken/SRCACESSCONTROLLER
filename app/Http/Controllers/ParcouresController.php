@@ -41,7 +41,7 @@ class ParcouresController extends Controller
         $parcoure=new Parcoure();
         $validate=$request->validated();
         $this->parcoureManager->build($parcoure,$request);
-        return redirect()->route('parcoure.index')->with('success',"le Parcoure universitaire a ete enregistrer");
+        return redirect()->route('parcoure.index')->with('success',"Le parcours universitaire a été enregistré");
     }
 
     /**
@@ -73,8 +73,7 @@ class ParcouresController extends Controller
      */
     public function destroy(Parcoure $parcoure)
     {
-        dd($parcoure->id);
         $parcoure->delete();
-        return redirect()->route('parcoure.index')->with('success',"Le parcoure a ete effacer ");
+        return redirect()->route('parcoure.index')->with('success',"Le parcours a été effacé");
     }
 }

@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cours;
+use App\Models\Journal;
 use Illuminate\Http\Request;
-use App\Utilities\CoursManager;
-use App\Http\Requests\CoursRequest;
 
-class CoursController extends Controller
+class JournalController extends Controller
 {
-    private $coursManager;
-
-    public function __construct(CoursManager $coursManager){
-         $this->coursManager = $coursManager;
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $cours=Cours::all();
-        return view('cours.index',[
-            'cours'=>$cours]);
+        $journals=Journal::paginate('10');
+        return view('journals.index',['journals'=>$journals]);
     }
 
     /**
@@ -29,18 +21,15 @@ class CoursController extends Controller
      */
     public function create()
     {
-        return view('cours.creation');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CoursRequest $request)
+    public function store(Request $request)
     {
-        $cours=new Cours();
-        $validate=$request->validated();
-        $this->coursManager->build($cours,$request);
-        return redirect()->route('cours.index')->with('success',"Le cours universitaire a été enregistré");
+        //
     }
 
     /**
@@ -72,8 +61,6 @@ class CoursController extends Controller
      */
     public function destroy(string $id)
     {
-        $cours = Cours::find($id);
-        $cours->delete();
-        return redirect()->route('cours.index')->with('success',"Le cours a été effacé");
+        //
     }
 }

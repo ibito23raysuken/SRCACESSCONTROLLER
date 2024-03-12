@@ -43,7 +43,7 @@ class EnseignantController extends Controller
         $enseignant=new Enseignant();
         $validate=$request->validated();
         $this->enseignantManager->build($enseignant,$request);
-        return redirect()->route('enseignants.index')->with('success',"l'enseignant a ete enregistrer");
+        return redirect()->route('enseignants.index')->with('success',"L'enseignant a été enregistré");
     }
 
     /**
@@ -72,7 +72,7 @@ class EnseignantController extends Controller
     {
         $validate=$enseignantRequest->validated();
         $this->enseignantManager->build($enseignant,$enseignantRequest);
-        return redirect()->route('enseignants.index')->with('success',"les informations sur l'enseignant a ete modifier");
+        return redirect()->route('enseignants.index')->with('success',"Les informations sur l'enseignant ont été modifiées");
     }
 
     /**
@@ -81,6 +81,6 @@ class EnseignantController extends Controller
     public function destroy(Enseignant $enseignant)
     {
         $enseignant->delete();
-        return redirect()->route('enseignants.index')->with('success',"L'enseignant a ete effacer ");
+        return redirect()->route('enseignants.index')->with('success',"L'enseignant a été effacé");
     }
 }

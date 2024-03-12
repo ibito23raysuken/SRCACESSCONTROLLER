@@ -109,6 +109,6 @@ class EtudiantsController extends Controller
                 File::delete($image_path);
         }
         $etudiant->delete();
-        return redirect()->route('etudiants.index')->with('success',"La carte étudiant a ete effacer ");
+        return redirect()->route('etudiants.index')->with('success',"La carte étudiante a été effacée");
     }
 }

@@ -99,12 +99,12 @@
                   <div class="mb-3">
                     <label for="parcoure" class="form-label">Veuillez sélectionner l'annee d'etude.</label>
                     <select class="form-select" name="anneedetude" aria-label="Default select example">
-                        <option value="1">Annee d'etude</option>
-                        <option value="2">1 ere Annee</option>
-                        <option value="3">2 eme Annee</option>
-                        <option value="4">3 eme Annee</option>
-                        <option value="5">4 eme Annee</option>
-                        <option value="6">5 eme Annee</option>
+                        <option value="0">Annee d'etude</option>
+                        <option value="1">1 ere Annee</option>
+                        <option value="2">2 eme Annee</option>
+                        <option value="3">3 eme Annee</option>
+                        <option value="4">4 eme Annee</option>
+                        <option value="5">5 eme Annee</option>
                       </select>
                     </div>
                     @error('Annedetude')

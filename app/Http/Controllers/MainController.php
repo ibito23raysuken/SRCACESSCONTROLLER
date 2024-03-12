@@ -29,7 +29,6 @@ class MainController extends Controller
     }
     function presence($semaine, $mention, $annee) {
         $dateAVerifier = Carbon::parse('2024-01-18 10:51:44');
-        $semaineAVerifier = "2024-W02";
         list($annee, $semaine) = explode('-W', $semaine);
         $dateDebutSemaine = Carbon::now()->setISODate($annee, $semaine, 1)->startOfDay();
         $dateFinSemaine = $dateDebutSemaine->copy()->endOfWeek();

@@ -13,7 +13,7 @@
             <div class="card">
                 <h2 class="display-6 text-center">Emploi du temps Parcours {{ $parcoure->nomparcoure }} </h2>
                 <h2 class="display-6 text-center">En classe de  {{ $annee }} </h2>
-                <label for="week">Choisissez une semaine en mai ou juin :</label>
+                <label for="week">Choisissez une semaine:</label>
                 <input type="week" name="week" id="champ-week"/>
                 <div class="card-body">
                     <table class="table table-bordered">
