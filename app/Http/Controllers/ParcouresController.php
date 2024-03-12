@@ -74,6 +74,6 @@ class ParcouresController extends Controller
     public function destroy(Parcoure $parcoure)
     {
         $parcoure->delete();
-        return redirect()->route('parcoure.index')->with('success',"Le parcours a été effacé");
+        return redirect()->route('parcoure.index')->with('success',"Le parcours a étéeffacé");
     }
 }
