@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Cours;
 use App\Models\Matiere;
 use App\Models\Parcoure;
 use App\Models\Presence;
@@ -27,13 +28,17 @@ class MainController extends Controller
             'parcoure'=>$parcoure,
             'annee'=>$annee]);
     }
-    function presence($semaine, $mention, $annee) {
-        $dateAVerifier = Carbon::parse('2024-01-18 10:51:44');
+    function presence($semaine, $mention, $annee,$cours,$jour,$heure) {
         list($annee, $semaine) = explode('-W', $semaine);
         $dateDebutSemaine = Carbon::now()->setISODate($annee, $semaine, 1)->startOfDay();
         $dateFinSemaine = $dateDebutSemaine->copy()->endOfWeek();
-        $presence = Presence::whereBetween('jour', [$dateDebutSemaine, $dateFinSemaine])->get();
+        $coursid=Cours::where('nomcours',$cours)->first()->id;
+        $matiere = Matiere::where('cours_id', $coursid)
+                  ->where('jour', $jour)
+                  ->first()->id;
+        $presence = Presence::where('matiere_id', $matiere)->where('jour',$jour)->whereBetween('created_at', [$dateDebutSemaine, $dateFinSemaine])->get();
+
         return view('presence.index',[
-            'presences'=>$presence]);
+            'presences'=>$presence,'cours'=>$cours]);
     }
 }

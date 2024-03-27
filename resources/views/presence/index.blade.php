@@ -21,7 +21,7 @@
             <th scope="row">{{ $presence->id }}</th>
             <th scope="row">{{ $presence->etudiant->nom }}</th>
             <th scope="row">{{ $presence->matiere->parcours->nomparcoure }}</th>
-            <th scope="row">{{ $presence->matiere->cours->nomcours }}</th>
+            <th scope="row">{{ $presence->matiere->cours->nomcours}}</th>
             <th scope="row">{{ $presence->jour }}</th>
             </tr>
         </tbody>

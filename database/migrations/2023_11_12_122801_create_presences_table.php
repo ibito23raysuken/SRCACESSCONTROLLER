@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('parcoure_id')->references('id')->on('parcoures')->onDelete('cascade');
             $table->unsignedBigInteger('matiere_id');
             $table->foreign('matiere_id')->references('id')->on('matieres')->onDelete('cascade');
-            $table->dateTime('jour');
+            $table->string('jour');
             $table->timestamps();
         });
     }

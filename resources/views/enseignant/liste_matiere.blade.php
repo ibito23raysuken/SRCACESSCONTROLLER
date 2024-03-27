@@ -10,7 +10,7 @@
                 <th scope="col">NOM du matiere</th>
               </tr>
             </thead>
-            @foreach ($enseignant->matiere as $matiere)
+            @foreach ($enseignant->matiere->unique('cours_id') as $matiere)
             <tbody>
                 <tr>
                 <th scope="row">{{ $matiere->id }}</th>

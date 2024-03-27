@@ -31,7 +31,7 @@
                                         <td>
                                             @foreach ($matieres as $matiere)
                                                 @if ($matiere->heure_debut <= $heure && $matiere->heure_fin >= $heure && $matiere->jour == $jour)
-                                                    <a class="text-decoration-none generate-url"  href="">{{$matiere->cours->nomcours}}</a>
+                                                    <a class="text-decoration-none generate-url" id="cours" jour={{ $jour }} heure={{ $heure }} cours={{$matiere->cours->nomcours}} href="">{{$matiere->cours->nomcours}}</a>
                                                 @endif
                                             @endforeach
                                         </td>
@@ -52,18 +52,32 @@
     {{-- Script JavaScript --}}
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#champ-week').on('change', function() {
-                var selectedWeek = $(this).val();
-                var parcoure = '{{ $parcoure->nomparcoure }}';
-                var anneedetude = '{{ $annee }}';
-                var url = '{{ route("presence", ["semaine" => ":semaine", "parcoure" => ":parcoure", "anneedetude" => ":anneedetude"]) }}';
-                url = url.replace(':semaine', selectedWeek);
-                url = url.replace(':parcoure', parcoure);
-                url = url.replace(':anneedetude', anneedetude);
-                console.log('URL générée : ' + url);
-                $('.generate-url').attr('href', url);
-            });
-        });
+$(document).ready(function() {
+    var cours,url,jour,heure;
+
+    $('#champ-week').on('change', function() {
+        var selectedWeek = $(this).val();
+        var parcoure = '{{ $parcoure->nomparcoure }}';
+        var anneedetude = '{{ $annee }}';
+        url = '{{ route("presence", ["semaine" => ":semaine","parcoure" => ":parcoure","anneedetude" => ":anneedetude","cours" => ":cours","jour" =>":jour","heure" => ":heure"]) }}';
+        url = url.replace(':semaine', selectedWeek);
+        url = url.replace(':parcoure', parcoure);
+        url = url.replace(':anneedetude', anneedetude['0']);
+        $(document).on('click', '.generate-url', function(event) {
+        event.preventDefault();
+        cours = $(this).attr('cours');
+        jour = $(this).attr('jour');
+        heure = $(this).attr('heure');
+        console.log('Cours sélectionné : ' + anneedetude['0']);
+        url = url.replace(':cours', cours);
+        url = url.replace(':jour', jour);
+        url = url.replace(':heure', heure);
+        console.log(url);
+        $('.generate-url').attr('href',  url);
+        window.location.href = url;
+    });
+    });
+});
+//
     </script>
 @endpush

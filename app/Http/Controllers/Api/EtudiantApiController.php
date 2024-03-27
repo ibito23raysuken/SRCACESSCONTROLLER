@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
+use App\Models\Cours;
 use App\Models\Journal;
+use App\Models\Matiere;
 use App\Models\Etudiant;
 use App\Models\Presence;
 use Illuminate\Http\Request;
@@ -29,17 +31,26 @@ class EtudiantApiController extends Controller
      */
     public function postpresence(Request $request)
     {
-        $donnees = $request->all();
-        foreach ($donnees as $element) {
+        $weekMap = [1=>'Lundi', 2=>'Mardi', 3=>'Mercredi', 4=>'Jeudi', 5=>'Vendredi',6=>'Samedi',7=>'dimanche'];
+        $donnees = $request->json()->all();
+
+        $datamatiere=$donnees['matiere'];
+        $cours = Cours::where('nomcours', $datamatiere)->first()->id;
+        $dayOfTheWeek = Carbon::now()->dayOfWeek;
+        $weekday = $weekMap[$dayOfTheWeek];
+        $matiere = Matiere::where('cours_id', $cours)
+                            ->whereDate('jour',$weekday)
+                            ->first();
+        foreach ($donnees['etudiants'] as $element) {
             $etudiant = Etudiant::where('id', $element['id'])->first();
             Presence::create([
                 'etudiant_id'=> $etudiant->id,
                 'parcoure_id'=>$etudiant->parcoure_id,
-                'matiere_id'=>5,
-                'jour'=>Carbon::now(),
+                'matiere_id'=>$matiere->id,
+                'jour'=>$weekday,
             ]);
         }
-        return response()->json(['success' => $etudiant]);
+        return response()->json(['success' => $donnees['matiere'] ]);
 
     }
 
@@ -54,12 +65,12 @@ class EtudiantApiController extends Controller
             [
             'etudiant_id'=> $etudiant->id,
             'parcoure_id'=>$etudiant->parcoure_id,
-            'ref_lecteur'=>$data['ref_lecteur'],
+            'ref_lecteur'=>$data['ref_lect'],
             'heure'=>Carbon::now(),
             'jour'=>Carbon::now(),
             ]
         );
-        return response()->json(['success' => $etudiant]);
+        return response()->json(['success' => $data]);
     }
 
     /**

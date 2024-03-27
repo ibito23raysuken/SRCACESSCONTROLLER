@@ -24,16 +24,18 @@ class EnseignantApiController extends Controller
             }
             $enseignant = Enseignant::where('nom', $request->nom)->first();
             if (!$enseignant || !Hash::check($request->password, $enseignant->password)) {
-                // L'authentification a échoué
                 return response()->json(['message' => 'Invalid credentials'], 401);
             }
 
-            $matieres = $enseignant->matiere;
             $token = $enseignant->createToken('authToken')->plainTextToken;
             return response()->json([
                 "status" => true,
                 'message' => 'Login successful',
-                'data' => $enseignant,
+                'data' => [
+                    'nom' => $enseignant->nom,
+                    'prenom' => $enseignant->prenom,
+                    'matiere' => $enseignant->matiere->unique('cours_id')->load('cours')
+                ],
                 'token' => $token
             ]);
         } catch (\Throwable $th) {
